@@ -51,13 +51,13 @@ router.post('/users/createUser', async (req, res) => {
         })
     } catch (e) {
         if (e.name == "MongoError" && e.code == 11000) {
-            res.status(400).send({
+            res.status(200).send({
                 ...resFailedObject,
                 message: 'Email already exist!',
                 data: ''
             })
         } else {
-            res.status(400).send({
+            res.status(200).send({
                 ...resFailedObject,
                 message: e.message,
                 data: ''
@@ -86,7 +86,7 @@ router.post('/users/login', async (req, res) => {
             }
         })
     } catch (e) {
-        res.status(400).send({
+        res.status(200).send({
             ...resFailedObject,
             message: e.message,
             data: ''
