@@ -163,7 +163,7 @@ router.get('/users/get', auth, async (req, res) => {
             tasks = await User.find({ designationId: { $ne: 1 } })
         }
         else if ((designationId == 2 || designationId == 3) && branchId != 1) {
-            tasks = await User.find({ branchId, designationId: { $ne: 2 }, designationId: { $ne: designationId } })
+            tasks = await User.find({ branchId, $and:[{designationId:{$ne: 2}},{designationId:{$ne: designationId}}]})
         }
         else {
             throw new Error("Access Denied!")
